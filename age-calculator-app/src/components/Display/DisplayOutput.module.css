@@ -1,0 +1,19 @@
+.display-output--container {
+	display: flex;
+}
+
+.display-output__number {
+	color: var(--purple);
+	font-size: 5em;
+	font-weight: 800;
+	font-style: italic;
+	letter-spacing: 10px;
+}
+
+.display-output__label {
+	text-transform: lowercase;
+	font-size: 5em;
+	font-weight: 800;
+	font-style: italic;
+	letter-spacing: 0px;
+}

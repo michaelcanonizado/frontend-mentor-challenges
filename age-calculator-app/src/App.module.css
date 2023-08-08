@@ -1,0 +1,25 @@
+.app {
+	background-color: #fff;
+
+	padding: 3em;
+
+	min-width: 650px;
+
+	border-radius: 24px 24px 25% 24px;
+
+	position: relative;
+}
+
+.app > svg {
+	background-color: var(--purple);
+	border-radius: 50%;
+	width: 75px;
+	height: 75px;
+	padding: 1.2em;
+
+	position: absolute;
+	/* top: 0;
+	left: 0; */
+	right: 5%;
+	top: 24%;
+}

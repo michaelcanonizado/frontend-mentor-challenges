@@ -1,0 +1,42 @@
+.form-control > label,
+input,
+p {
+	display: block;
+}
+
+.form-label {
+	font-size: 0.75em;
+	font-weight: 700;
+	color: var(--smokey-grey);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.form-input {
+	font-size: 20px;
+	width: 120px;
+
+	color: var(--off-black);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+
+	padding: 0.5em 0.5em 0.4em 0.7em;
+	margin: 0.2em 1em 0.3em 0;
+
+	border-radius: 0.2em;
+	border: 2px solid hsl(0, 0%, 86%);
+	outline: none;
+}
+/* .form-input:focus {
+	border: 2px solid var(--light-red);
+} */
+
+.form-error {
+	font-size: 0.6em;
+	font-style: italic;
+	letter-spacing: 0px;
+	margin-left: 2px;
+
+	/* opacity: 0; */
+}
