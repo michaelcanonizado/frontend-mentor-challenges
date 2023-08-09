@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--color-bkg: 0 0% 98%;
+		--color-text: 200 15% 8%;
+		--color-elements: 0 0% 100%;
+		--color-input: 0 0% 52%;
+	}
+	[data-theme='dark'] {
+		--color-bkg: 207 26% 17%;
+		--color-text: 0 0% 100%;
+		--color-elements: 209 23% 22%;
+		--color-input: 0 0% 52%;
+	}
+	/* hsl(0, 0%, 98%) */
+}
