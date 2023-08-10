@@ -1,17 +1,15 @@
 import React from 'react';
 
-import COUNTRIES_DATA from './../../data.json';
-
 import CountriesListNavigation from './CountriesListNavigation';
 import CountriesListItem from './CountriesListItem';
 
-export default function CountriesList() {
+export default function CountriesList({ COUNTRIES_DATA }) {
 	return (
 		<>
 			<CountriesListNavigation />
-			<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
+			<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 mb-20">
 				{COUNTRIES_DATA.map(
-					({ flags, name, population, region, capital }) => {
+					({ flags, name, population, region, capital, alpha3Code }) => {
 						const formattedData = {
 							flag:
 								flags.png ||
@@ -20,6 +18,7 @@ export default function CountriesList() {
 							population: population || 'N/A',
 							region: region || 'N/A',
 							capital: capital || 'N/A',
+							countryCode: alpha3Code || name,
 						};
 
 						return <CountriesListItem data={formattedData} />;

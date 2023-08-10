@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -21,9 +21,9 @@ export default function MainNavigation({ className }) {
 				aria-label="Primary Navbar"
 			>
 				<div className="hover:cursor-pointer">
-					<NavLink to="countries" className="font-extrabold text-xl">
+					<Link to="" className="font-extrabold text-xl">
 						Where in the World?
-					</NavLink>
+					</Link>
 				</div>
 				<div
 					className="flex items-center hover:cursor-pointer"
@@ -31,7 +31,7 @@ export default function MainNavigation({ className }) {
 				>
 					<div className="w-[30px] mr-1 ">
 						<img
-							src={isDarkMode ? 'sunny-icon.svg' : 'moon-icon.svg'}
+							src={isDarkMode ? '/sunny-icon.svg' : '/moon-icon.svg'}
 							alt="Dark M0de"
 						/>
 					</div>

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 export default function CountriesListItem({ data }) {
 	return (
-		<a
-			href="/"
+		<Link
+			to={`./countries/${data.countryCode}`}
 			className="flex flex-col rounded-md overflow-hidden  bg-elements w-full shadow-card hover:cursor-pointer hover:scale-[1.02]  md:hover:scale-105 transition-transform duration-[250ms] ease-out"
 		>
 			<div className="rounded-md overflow-hidden">
@@ -36,6 +38,6 @@ export default function CountriesListItem({ data }) {
 					</li>
 				</ul>
 			</div>
-		</a>
+		</Link>
 	);
 }

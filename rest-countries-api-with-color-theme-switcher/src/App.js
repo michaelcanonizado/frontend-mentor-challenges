@@ -13,14 +13,14 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Countries /> },
 			{
-				path: 'countries',
+				path: 'countries/:countryCode',
 				children: [
-					{ index: true, element: <Countries /> },
-					{
-						path: ':countryId',
+					{ index: true, element: <CountryDetail /> },
+					// {
+					// 	path: ':countryCode',
 
-						children: [{ index: true, element: <CountryDetail /> }],
-					},
+					// 	children: [{ index: true, element: <CountryDetail /> }],
+					// },
 				],
 			},
 		],
