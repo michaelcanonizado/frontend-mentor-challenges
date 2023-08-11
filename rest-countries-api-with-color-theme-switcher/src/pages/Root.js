@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { themeActions } from '../redux/slice/themeSlice';
+import { useSelector } from 'react-redux';
 
 import MainNavigation from '../components/Header/MainNavigation';
 
 export default function RootLayout() {
-	const dispatch = useDispatch();
-
-	// const isDarkMode = localStorage.getItem('isDarkMode');
-	// dispatch(themeActions.setDarkMode({ payload: storedDarkMode }));
-
 	const isDarkMode = useSelector((state) => state.theme.isDarkMode);
-
-	// useEffect(() => {
-	// 	localStorage.setItem('DARK_MODE', isDarkMode);
-	// }, [isDarkMode]);
 
 	return (
 		<div

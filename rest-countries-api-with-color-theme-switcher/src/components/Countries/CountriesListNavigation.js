@@ -5,6 +5,10 @@ import { useSelector } from 'react-redux';
 export default function CountriesListNavigation() {
 	const isDarkMode = useSelector((state) => state.theme.isDarkMode);
 
+	const onChangeCountriesInputHandler = (event) => {
+		console.log(event.target.value);
+	};
+
 	return (
 		<form className="my-10  flex flex-col md:flex-row gap-10 md:justify-between md:items-center">
 			<div className="border border-elements rounded-md overflow-hidden h-12  md:flex-grow lg:grow-0 lg:w-2/5 flex bg-elements">
@@ -25,6 +29,7 @@ export default function CountriesListNavigation() {
 				</button>
 
 				<input
+					onChange={onChangeCountriesInputHandler}
 					className="bg-elements text-text text-lg pl-5 border-none outline-none flex-grow"
 					type="text"
 					placeholder="Search for a country..."

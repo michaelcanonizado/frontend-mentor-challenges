@@ -19,7 +19,6 @@ function findAndFormatCountryDetails(COUNTRIES_DATA, countryCode) {
 		}
 	});
 
-	console.log(country);
 	if ('borders' in country) {
 		borderCountries = country.borders.map((countryCode) => {
 			const borderCountry = COUNTRIES_DATA.find((country) => {
@@ -43,7 +42,6 @@ function findAndFormatCountryDetails(COUNTRIES_DATA, countryCode) {
 	}
 
 	if (Object.keys(country.currencies).length > 1) {
-		console.log(Object.keys(country.currencies));
 		countryCurrencies = Object.keys(country.currencies).join(', ');
 	} else {
 		countryCurrencies = Object.keys(country.currencies).shift().split;
@@ -85,9 +83,6 @@ export default function CountryDetail() {
 
 	const countryDetails = findAndFormatCountryDetails(COUNTRIES_DATA, countryCode);
 
-	console.log(countryDetails);
-
-	// return <h1>{countryDetails['Native Name']}</h1>;
 	return <Country country={countryDetails} COUNTRIES_DATA={COUNTRIES_DATA} />;
 }
 

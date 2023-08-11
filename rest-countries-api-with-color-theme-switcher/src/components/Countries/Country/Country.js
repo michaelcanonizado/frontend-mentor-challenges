@@ -28,9 +28,9 @@ export default function Country({ country }) {
 						</h1>
 					</div>
 					<ul className="mb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-2">
-						{Object.entries(country.details).map((detail) => {
+						{Object.entries(country.details).map((detail, index) => {
 							return (
-								<li className="flex">
+								<li className="flex" key={index}>
 									<span className="font-medium text-base mr-1">{`${detail[0]}:`}</span>
 									<p className="text-base">{detail[1]}</p>
 								</li>
@@ -50,6 +50,7 @@ export default function Country({ country }) {
 										<Link
 											className="py-2 px-4 rounded-md bg-elements shadow-card"
 											to={`/countries/${borderedCountry.code}`}
+											key={borderedCountry.code}
 										>
 											{borderedCountry.name}
 										</Link>

@@ -9,7 +9,7 @@ export default function CountriesList({ COUNTRIES_DATA }) {
 			<CountriesListNavigation />
 			<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 mb-20">
 				{COUNTRIES_DATA.map(
-					({ flags, name, population, region, capital, cca3 }) => {
+					({ flags, name, population, region, capital, cca3, cioc }) => {
 						const formattedData = {
 							flag:
 								flags.png ||
@@ -18,10 +18,15 @@ export default function CountriesList({ COUNTRIES_DATA }) {
 							population: population || 'N/A',
 							region: region || 'N/A',
 							capital: capital ? capital[0] : 'N/A',
-							countryCode: cca3 || name,
+							countryCode: cca3 || cioc,
 						};
 
-						return <CountriesListItem countryData={formattedData} />;
+						return (
+							<CountriesListItem
+								countryData={formattedData}
+								key={formattedData.countryCode}
+							/>
+						);
 					}
 				)}
 			</section>
