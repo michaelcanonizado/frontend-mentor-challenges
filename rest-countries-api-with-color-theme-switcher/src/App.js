@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Root from './pages/Root';
 import Error from './pages/Error';
-import Countries from './pages/Countries';
-import CountryDetail from './pages/CountryDetail';
+import Countries, { loader as countriesLoader } from './pages/Countries';
+import CountryDetail, { loader as countryLoader } from './pages/CountryDetail';
 
 const router = createBrowserRouter([
 	{
@@ -11,16 +11,19 @@ const router = createBrowserRouter([
 		element: <Root />,
 		errorElement: <Error />,
 		children: [
-			{ index: true, element: <Countries /> },
+			{
+				index: true,
+				element: <Countries />,
+				loader: countriesLoader,
+			},
 			{
 				path: 'countries/:countryCode',
 				children: [
-					{ index: true, element: <CountryDetail /> },
-					// {
-					// 	path: ':countryCode',
-
-					// 	children: [{ index: true, element: <CountryDetail /> }],
-					// },
+					{
+						index: true,
+						element: <CountryDetail />,
+						loader: countryLoader,
+					},
 				],
 			},
 		],

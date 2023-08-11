@@ -4,42 +4,7 @@ import { Link } from 'react-router-dom';
 
 import CountryNavigation from './CountryNavigation';
 
-export default function Country({ country, COUNTRIES_DATA }) {
-	let borderCountries = null;
-
-	const countryDetails = {
-		'Native Name': country.nativeName,
-		'Top Level Domain': country.topLevelDomain,
-		Population: country.population,
-		Currencies: country.currencies[0].code,
-		Region: country.region,
-		Languages: country.languages
-			.map((language) => {
-				return language.name;
-			})
-			.join(', '),
-		'Sub region': country.subregion,
-		Capital: country.capital,
-	};
-
-	if (country.borders) {
-		borderCountries = country.borders.map((countryCode) => {
-			const borderCountry = COUNTRIES_DATA.find((country) => {
-				if (country.alpha3Code === countryCode) {
-					return country;
-				}
-			});
-
-			return {
-				name: borderCountry.name,
-				alpha3Code: borderCountry.alpha3Code,
-			};
-			// return country;
-		});
-	}
-
-	console.log(borderCountries);
-
+export default function Country({ country }) {
 	return (
 		<>
 			<CountryNavigation />
@@ -48,17 +13,22 @@ export default function Country({ country, COUNTRIES_DATA }) {
 					<div className="w-full">
 						<img
 							className="w-full"
-							src={country.flag}
-							alt={`${country.name}'s flag`}
+							src={country.flag.png}
+							alt={country.flag.alt}
 						/>
 					</div>
 				</div>
 				<div className=" h-full w-full">
 					<div className="mb-5">
-						<h1 className="text-4xl">{country.name}</h1>
+						<h1 className="text-4xl">
+							<span className="font-semibold tracking-wide">
+								{country.name.common}
+							</span>
+							<span className="font-light">{` (${country.name.official})`}</span>
+						</h1>
 					</div>
-					<ul className="mb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2">
-						{Object.entries(countryDetails).map((detail) => {
+					<ul className="mb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-2">
+						{Object.entries(country.details).map((detail) => {
 							return (
 								<li className="flex">
 									<span className="font-medium text-base mr-1">{`${detail[0]}:`}</span>
@@ -67,7 +37,7 @@ export default function Country({ country, COUNTRIES_DATA }) {
 							);
 						})}
 					</ul>
-					{borderCountries !== null ? (
+					{country.borders !== null ? (
 						<div className="flex flex-col">
 							<div className="mb-3">
 								<h2 className="text-base font-medium">
@@ -75,13 +45,13 @@ export default function Country({ country, COUNTRIES_DATA }) {
 								</h2>
 							</div>
 							<div className={`flex flex-wrap gap-2 flex-grow`}>
-								{borderCountries.map((borderCountry) => {
+								{country.borders.map((borderedCountry) => {
 									return (
 										<Link
 											className="py-2 px-4 rounded-md bg-elements shadow-card"
-											to={`/countries/${borderCountry.alpha3Code}`}
+											to={`/countries/${borderedCountry.code}`}
 										>
-											{borderCountry.name}
+											{borderedCountry.name}
 										</Link>
 									);
 								})}
