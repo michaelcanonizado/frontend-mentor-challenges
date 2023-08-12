@@ -64,7 +64,7 @@ function findAndFormatCountryDetails(COUNTRIES_DATA, countryCode) {
 				: 'No Native Name',
 			'Top Level Domain': country.tld ? country.tld[0] : 'No Top Level Domain',
 			Population: country.population
-				? country.population
+				? country.population.toLocaleString('en-US')
 				: 'Currently No Population',
 			Currencies: country.currencies ? countryCurrencies : 'No Currency',
 			Region: country.region ? country.region : 'N/A',

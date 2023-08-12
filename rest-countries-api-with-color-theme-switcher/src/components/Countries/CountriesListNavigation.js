@@ -2,17 +2,30 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-export default function CountriesListNavigation() {
+export default function CountriesListNavigation(props) {
 	const isDarkMode = useSelector((state) => state.theme.isDarkMode);
 
-	const onChangeCountriesInputHandler = (event) => {
-		console.log(event.target.value);
-	};
+	const filterOptions = [
+		{ name: 'All', value: 'All' },
+		{ name: 'Africa', value: 'Africa' },
+		{ name: 'Americas', value: 'Americas' },
+		{ name: 'Asia', value: 'Asia' },
+		{ name: 'Europe', value: 'Europe' },
+		{ name: 'Oceania', value: 'Oceania' },
+	];
+
+	function onChangeCountriesInputHandler(event) {
+		props.searchQuery(event.target.value);
+	}
+	function onChangeFilterSelectHandler(event) {
+		props.filterOption(event.target.value);
+	}
 
 	return (
 		<form className="my-10  flex flex-col md:flex-row gap-10 md:justify-between md:items-center">
 			<div className="border border-elements rounded-md overflow-hidden h-12  md:flex-grow lg:grow-0 lg:w-2/5 flex bg-elements">
-				<button
+				{/* Use a div instead of button to prevent submitting */}
+				<div
 					className="
                w-[20%] grid place-items-center hover:cursor-pointer"
 				>
@@ -26,7 +39,7 @@ export default function CountriesListNavigation() {
 							alt="search icon"
 						/>
 					</div>
-				</button>
+				</div>
 
 				<input
 					onChange={onChangeCountriesInputHandler}
@@ -44,13 +57,11 @@ export default function CountriesListNavigation() {
 					className="bg-elements p-2 border border-none outline-none font-semibold hover:cursor-pointer"
 					name="region"
 					id="region-select"
+					onChange={onChangeFilterSelectHandler}
 				>
-					<option value="all">All</option>
-					<option value="africa">Africa</option>
-					<option value="america">America</option>
-					<option value="asia">Asia</option>
-					<option value="europe">Europe</option>
-					<option value="oceania">Oceania</option>
+					{filterOptions.map((option) => {
+						return <option value={option.value}>{option.name}</option>;
+					})}
 				</select>
 			</div>
 		</form>
