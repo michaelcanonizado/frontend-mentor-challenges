@@ -1,6 +1,6 @@
 # Frontend-Mentor-Challenges
 
-This repository contains some challenges from [Frontend Mentor](https://www.frontendmentor.io/challenges).
+This repository contains some challenges I took from [Frontend Mentor](https://www.frontendmentor.io/challenges).
 
 
 ### Rating
