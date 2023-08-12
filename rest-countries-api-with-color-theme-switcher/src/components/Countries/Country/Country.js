@@ -37,13 +37,19 @@ export default function Country({ country }) {
 							);
 						})}
 					</ul>
-					{country.borders !== null ? (
-						<div className="flex flex-col">
-							<div className="mb-3">
-								<h2 className="text-base font-medium">
-									Border Countries:
-								</h2>
-							</div>
+
+					<div className="flex flex-col">
+						<div className="mb-3 flex items-center gap-1">
+							<h2 className="text-base font-medium">
+								Border Countries:
+							</h2>
+							{country.borders === null ? (
+								<span className="text-base font-light">{`${country.name.common} has no border countries`}</span>
+							) : (
+								''
+							)}
+						</div>
+						{country.borders !== null ? (
 							<div className={`flex flex-wrap gap-2 flex-grow`}>
 								{country.borders.map((borderedCountry) => {
 									return (
@@ -57,10 +63,10 @@ export default function Country({ country }) {
 									);
 								})}
 							</div>
-						</div>
-					) : (
-						''
-					)}
+						) : (
+							''
+						)}
+					</div>
 				</div>
 			</section>
 		</>

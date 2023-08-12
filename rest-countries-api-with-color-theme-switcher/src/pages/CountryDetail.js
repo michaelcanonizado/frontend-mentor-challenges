@@ -38,13 +38,13 @@ function findAndFormatCountryDetails(COUNTRIES_DATA, countryCode) {
 	if (Object.values(country.languages).length > 1) {
 		countryLanguages = Object.values(country.languages).join(', ');
 	} else {
-		countryLanguages = Object.values(country.languages).shift().split;
+		countryLanguages = Object.values(country.languages).shift();
 	}
 
 	if (Object.keys(country.currencies).length > 1) {
 		countryCurrencies = Object.keys(country.currencies).join(', ');
 	} else {
-		countryCurrencies = Object.keys(country.currencies).shift().split;
+		countryCurrencies = Object.keys(country.currencies).shift();
 	}
 
 	const countryDetails = {
