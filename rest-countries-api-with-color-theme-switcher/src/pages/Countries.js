@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { dataActions } from './../redux/slice/dataSlice';
-
 // Local Countries JSON Data
 // import COUNTRIES_DATA from './../data.json';
 
