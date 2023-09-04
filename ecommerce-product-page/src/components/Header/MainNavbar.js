@@ -17,7 +17,7 @@ export default function MainNavbar({ className }) {
 
 	return (
 		<nav
-			className={`flex justify-between h-20 border-b box-border ${className}`}
+			className={`flex justify-between h-20 border-b box-border  ${className}`}
 		>
 			<div className="flex items-center gap-5 md:gap-10">
 				<div className="block w-[25px] md:hidden">
