@@ -1,42 +1,12 @@
 import React, { useState } from 'react';
 
-const itemDetails = {
-	name: 'Fall Limited Edition Sneakers',
-	price: {
-		salePrice: '125',
-		orgPrice: '250',
-	},
-	description:
-		"These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole. They'll withstand everything the weather can offer.",
-	images: {
-		jpgs: [
-			'image-product-1.jpg',
-			'image-product-2.jpg',
-			'image-product-3.jpg',
-			'image-product-4.jpg',
-		],
-		thumbnails: [
-			'image-product-1-thumbnail.jpg',
-			'image-product-2-thumbnail.jpg',
-			'image-product-3-thumbnail.jpg',
-			'image-product-4-thumbnail.jpg',
-		],
-	},
-};
+import { itemDetails } from '../../data.js';
+
+import DesktopImageSlider from './DesktopImageSlider.js';
+import MobileImageSlider from './MobileImageSlider.js';
 
 export default function ItemDetails({ className }) {
 	const [itemQty, setItemQty] = useState(0);
-	const [displayedImage, setDisplayedImage] = useState([
-		'http://localhost:3000/image-product-1.jpg',
-		'http://localhost:3000/image-product-1-thumbnail.jpg',
-	]);
-
-	const imageSliderHandler = (event) => {
-		setDisplayedImage([
-			event.target.src.replace('-thumbnail', ''),
-			event.target.src,
-		]);
-	};
 
 	const incrementItemhandler = () => {
 		setItemQty((currQty) => {
@@ -53,49 +23,19 @@ export default function ItemDetails({ className }) {
 	};
 
 	return (
-		<div className={`grid grid-cols-2 gap-20 mt-20 ${className}`}>
-			<div className="flex flex-col gap-5 overflow-hidden">
-				<div className="rounded-xl overflow-hidden">
-					<img src={displayedImage[0]} alt="" />
-				</div>
-				<div className="grid grid-cols-4 gap-5">
-					{itemDetails.images.thumbnails.map((thumbnail) => {
-						return (
-							<>
-								<div
-									className={`rounded-xl border-box overflow-hidden hover:cursor-pointer relative ${
-										displayedImage[1].includes(thumbnail)
-											? 'border-[3px] border-primary-200'
-											: ''
-									}`}
-								>
-									{displayedImage[1].includes(thumbnail) ? (
-										<img
-											className="opacity-30"
-											src={thumbnail}
-											alt=""
-										/>
-									) : (
-										<img
-											className="hover:opacity-70 transition-opacity ease-linear"
-											src={thumbnail}
-											alt=""
-											onClick={imageSliderHandler}
-										/>
-									)}
-								</div>
-							</>
-						);
-					})}
-				</div>
-			</div>
-			<div className="my-auto">
+		<div
+			className={`grid grid-cols-1 md:grid-cols-2 md:gap-10 lg:gap-20 md:mt-20 w-full ${className}`}
+		>
+			<DesktopImageSlider className="hidden md:flex" />
+			<MobileImageSlider className="flex md:hidden" />
+
+			<div className="my-auto mt-10 mx-10 md:mx-0   w-fit sm:w-[70%] md:w-fit">
 				<div className="mb-2">
 					<span className="text-primary-200 text-sm font-bold tracking-wider">
 						SNEAKER COMPANY
 					</span>
 				</div>
-				<div className="mb-10">
+				<div className="mb-10 lg:w-[80%]">
 					<h1 className="text-4xl font-bold">{itemDetails.name}</h1>
 				</div>
 				<div className="mb-5">
@@ -144,8 +84,8 @@ export default function ItemDetails({ className }) {
 							</div>
 						</div>
 					</div>
-					<div className="">
-						<button className="h-[50px] w-[250px] bg-primary-200 text-neutral-100 flex justify-center items-center rounded-xl hover:cursor-pointer hover:translate-y-[-2px] transition-transform ease-out">
+					<div className="w-full">
+						<button className="h-[50px] max-w-[250px] w-full bg-primary-200 text-neutral-100 flex justify-center items-center rounded-xl hover:cursor-pointer hover:translate-y-[-2px] transition-transform ease-out">
 							<svg
 								className="fill-neutral-100"
 								width="22"
@@ -157,7 +97,9 @@ export default function ItemDetails({ className }) {
 									fill-rule="nonzero"
 								/>
 							</svg>
-							<span className="ml-3 font-semibold">Add to cart</span>
+							<span className="ml-3 font-semibold md:text-sm lg:text-base">
+								Add to cart
+							</span>
 						</button>
 					</div>
 				</div>
