@@ -92,7 +92,7 @@ export default function MainNavbar({ className }) {
 								md:flex md:items-center
 								
 								md:border-b-4
-								md:border-t-4
+								// md:border-t-4
 								md:border-transparent
 								
 								text-neutral-400
