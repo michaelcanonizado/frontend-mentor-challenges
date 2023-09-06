@@ -8,6 +8,96 @@ const navLinks = [
 	{ name: 'Contact', url: '/' },
 ];
 
+const cartDetails = {
+	totalItems: 15,
+	items: [
+		{
+			img: 'image-product-1-thumbnail.jpg',
+			name: 'Fall Limited Edition Sneakers',
+			price: 125,
+			qty: 3,
+			totalPrice: 400,
+		},
+		{
+			img: 'image-product-2-thumbnail.jpg',
+			name: 'Fall Limited',
+			price: 175,
+			qty: 5,
+			totalPrice: 375,
+		},
+		{
+			img: 'image-product-3-thumbnail.jpg',
+			name: 'Limited Edition Sneakers',
+			price: 150,
+			qty: 2,
+			totalPrice: 705,
+		},
+		{
+			img: 'image-product-4-thumbnail.jpg',
+			name: 'Fall Sneakers',
+			price: 225,
+			qty: 4,
+			totalPrice: 937,
+		},
+		{
+			img: 'image-product-1-thumbnail.jpg',
+			name: 'Fall Limited Edition Sneakers',
+			price: 125,
+			qty: 3,
+			totalPrice: 400,
+		},
+		{
+			img: 'image-product-2-thumbnail.jpg',
+			name: 'Fall Limited',
+			price: 175,
+			qty: 5,
+			totalPrice: 375,
+		},
+		{
+			img: 'image-product-3-thumbnail.jpg',
+			name: 'Limited Edition Sneakers',
+			price: 150,
+			qty: 2,
+			totalPrice: 705,
+		},
+		{
+			img: 'image-product-4-thumbnail.jpg',
+			name: 'Fall Sneakers',
+			price: 225,
+			qty: 4,
+			totalPrice: 937,
+		},
+		{
+			img: 'image-product-1-thumbnail.jpg',
+			name: 'Fall Limited Edition Sneakers',
+			price: 125,
+			qty: 3,
+			totalPrice: 400,
+		},
+		{
+			img: 'image-product-2-thumbnail.jpg',
+			name: 'Fall Limited',
+			price: 175,
+			qty: 5,
+			totalPrice: 375,
+		},
+		{
+			img: 'image-product-3-thumbnail.jpg',
+			name: 'Limited Edition Sneakers',
+			price: 150,
+			qty: 2,
+			totalPrice: 705,
+		},
+		{
+			img: 'image-product-4-thumbnail.jpg',
+			name: 'Fall Sneakers',
+			price: 225,
+			qty: 4,
+			totalPrice: 937,
+		},
+	],
+};
+
 export default function MainNavbar({ className }) {
 	const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
@@ -15,11 +105,19 @@ export default function MainNavbar({ className }) {
 		setIsNavbarOpen((bool) => !bool);
 	};
 
+	const onDeleteCartItemHandler = () => {
+		console.log('deleting item');
+	};
+
+	const onCheckoutHandler = () => {
+		console.log('checking out');
+	};
+
 	return (
 		<nav
 			className={`flex justify-between h-20 border-b box-border  ${className}`}
 		>
-			<div className="flex items-center gap-5 md:gap-10">
+			<div className="flex items-center gap-5 md:gap-10 z-50">
 				<div className="block w-[25px] md:hidden">
 					<img
 						className="hover:cursor-pointer w-full"
@@ -122,12 +220,90 @@ export default function MainNavbar({ className }) {
 					data-[visible=false]:hidden
 					md:data-[visible=true]:hidden
 
-					bg-neutral-500"
+					bg-neutral-500
+					
+					z-40"
 			></div>
 
-			<div className="flex items-center gap-7">
-				<div className="w-[25px] hover:cursor-pointer">
-					<img className="w-full" src="icon-cart.svg" alt="Cart" />
+			<div className="flex items-center gap-7 ">
+				<div className="w-[25px] relative ">
+					<input
+						className="bg-red-400 absolute inset-0 opacity-0 hover:cursor-pointer peer"
+						type="checkbox"
+					></input>
+					<img
+						className="w-full hover:cursor-pointer"
+						src="icon-cart.svg"
+						alt="Cart"
+					/>
+					<div className="bg-primary-200 rounded-full grid place-items-center h-[20px] min-w-[20px] w-fit px-[2px] absolute top-[-10px] right-[-10px]">
+						<span className="text-neutral-100 text-xs">
+							{cartDetails.totalItems}
+						</span>
+					</div>
+					<div
+						className="bg-neutral-100 rounded-xl transition-all duration-[400ms] ease-in-out shadow-xl 
+						
+						w-[250px] md:w-[305px]
+		
+						overflow-hidden max-h-0 peer-checked:max-h-[500px]				
+					
+						absolute top-[150%] left-[50%] translate-x-[-50%]"
+					>
+						<div className="px-4 py-3 border-b border-bottom">
+							<span className="font-bold">Cart</span>
+						</div>
+						<div className="">
+							<div className="px-4 pt-4 h-[250px] overflow-y-scroll">
+								{cartDetails.items.map((item) => {
+									return (
+										<div className="flex justify-between items-center mb-4">
+											<div className="flex items-center">
+												<div className="w-[40px] rounded-md overflow-hidden mr-2">
+													<img
+														className=""
+														src={item.img}
+														alt="Fall Limited Edition Sneakers"
+													/>
+												</div>
+												<div>
+													<span className="text-neutral-400 text-sm">
+														{item.name}
+													</span>
+													<div className="text-neutral-400 text-xs">
+														<span className="mr-1">
+															{`$${item.price} x ${item.qty}`}
+														</span>
+														<span className="text-neutral-600 font-extrabold text-[]">
+															{`$${item.totalPrice}`}
+														</span>
+													</div>
+												</div>
+											</div>
+											<div
+												className="w-[12px] hover:cursor-pointer"
+												onClick={onDeleteCartItemHandler}
+											>
+												<img
+													className="w-full h-full"
+													src="icon-delete.svg"
+													alt="Delete Fall Limited Edition Sneakers"
+												/>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+							<div className="m-4">
+								<button
+									className=" text-sm w-full h-[50px] rounded-xl bg-primary-200 text-neutral-100 hover:opacity-70 transition-opacity"
+									onClick={onCheckoutHandler}
+								>
+									Checkout
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className="w-[45px]  hover:cursor-pointer">
 					<img src="image-avatar.png" alt="Profile" />
@@ -136,25 +312,3 @@ export default function MainNavbar({ className }) {
 		</nav>
 	);
 }
-
-// className="
-// 					transition-transform md:transition-none
-
-// 					data-[visible=false]:translate-x-[-100%]
-// 					md:data-[visible=false]:translate-x-0
-
-// 					fixed
-// 					inset-y-0
-// 					left-0
-// 					right-[30%]
-// 					md:static
-// 					flex-col
-// 					md:flex-row
-// 					p-10
-// 					md:p-0
-
-// 					flex
-// 					gap-5
-// 					md:gap-10
-// 					text-base
-// 					bg-red-300"

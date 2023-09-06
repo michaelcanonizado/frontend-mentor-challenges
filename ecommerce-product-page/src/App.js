@@ -5,10 +5,10 @@ export default function App() {
 	return (
 		<div className="h-screen">
 			<header className="sticky top-0 bg-neutral-100">
-				<MainNavbar className="max-w-[1366px] w-[90%] m-auto" />
+				<MainNavbar className="max-w-[1366px] w-[80%] m-auto" />
 			</header>
 			<main className="pb-20">
-				<ItemDetails className="max-w-[1080px] md:w-[90%] md:mx-auto" />
+				<ItemDetails className="max-w-[1080px] md:w-[80%] md:mx-auto" />
 			</main>
 		</div>
 	);
