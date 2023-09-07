@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useSelector } from 'react-redux';
+
 const navLinks = [
 	{ name: 'Collection', url: '/' },
 	{ name: 'Men', url: '/' },
@@ -8,98 +10,86 @@ const navLinks = [
 	{ name: 'Contact', url: '/' },
 ];
 
-const cartDetails = {
-	totalItems: 15,
-	items: [
-		{
-			img: 'image-product-1-thumbnail.jpg',
-			name: 'Fall Limited Edition Sneakers',
-			price: 125,
-			qty: 3,
-			totalPrice: 400,
-		},
-		{
-			img: 'image-product-2-thumbnail.jpg',
-			name: 'Fall Limited',
-			price: 175,
-			qty: 5,
-			totalPrice: 375,
-		},
-		{
-			img: 'image-product-3-thumbnail.jpg',
-			name: 'Limited Edition Sneakers',
-			price: 150,
-			qty: 2,
-			totalPrice: 705,
-		},
-		{
-			img: 'image-product-4-thumbnail.jpg',
-			name: 'Fall Sneakers',
-			price: 225,
-			qty: 4,
-			totalPrice: 937,
-		},
-		{
-			img: 'image-product-1-thumbnail.jpg',
-			name: 'Fall Limited Edition Sneakers',
-			price: 125,
-			qty: 3,
-			totalPrice: 400,
-		},
-		{
-			img: 'image-product-2-thumbnail.jpg',
-			name: 'Fall Limited',
-			price: 175,
-			qty: 5,
-			totalPrice: 375,
-		},
-		{
-			img: 'image-product-3-thumbnail.jpg',
-			name: 'Limited Edition Sneakers',
-			price: 150,
-			qty: 2,
-			totalPrice: 705,
-		},
-		{
-			img: 'image-product-4-thumbnail.jpg',
-			name: 'Fall Sneakers',
-			price: 225,
-			qty: 4,
-			totalPrice: 937,
-		},
-		{
-			img: 'image-product-1-thumbnail.jpg',
-			name: 'Fall Limited Edition Sneakers',
-			price: 125,
-			qty: 3,
-			totalPrice: 400,
-		},
-		{
-			img: 'image-product-2-thumbnail.jpg',
-			name: 'Fall Limited',
-			price: 175,
-			qty: 5,
-			totalPrice: 375,
-		},
-		{
-			img: 'image-product-3-thumbnail.jpg',
-			name: 'Limited Edition Sneakers',
-			price: 150,
-			qty: 2,
-			totalPrice: 705,
-		},
-		{
-			img: 'image-product-4-thumbnail.jpg',
-			name: 'Fall Sneakers',
-			price: 225,
-			qty: 4,
-			totalPrice: 937,
-		},
-	],
-};
+// const cartDetails = {
+// 	totalItems: 15,
+// 	items: [
+// 		{
+// 			img: 'image-product-3-thumbnail.jpg',
+// 			name: 'Limited Edition Sneakers',
+// 			price: 150,
+// 			qty: 2,
+// 			totalPrice: 705,
+// 		},
+// 		{
+// 			img: 'image-product-4-thumbnail.jpg',
+// 			name: 'Fall Sneakers',
+// 			price: 225,
+// 			qty: 4,
+// 			totalPrice: 937,
+// 		},
+// 		{
+// 			img: 'image-product-1-thumbnail.jpg',
+// 			name: 'Fall Limited Edition Sneakers',
+// 			price: 125,
+// 			qty: 3,
+// 			totalPrice: 400,
+// 		},
+// 		{
+// 			img: 'image-product-2-thumbnail.jpg',
+// 			name: 'Fall Limited',
+// 			price: 175,
+// 			qty: 5,
+// 			totalPrice: 375,
+// 		},
+// 		{
+// 			img: 'image-product-3-thumbnail.jpg',
+// 			name: 'Limited Edition Sneakers',
+// 			price: 150,
+// 			qty: 2,
+// 			totalPrice: 705,
+// 		},
+// 		{
+// 			img: 'image-product-4-thumbnail.jpg',
+// 			name: 'Fall Sneakers',
+// 			price: 225,
+// 			qty: 4,
+// 			totalPrice: 937,
+// 		},
+// 		{
+// 			img: 'image-product-1-thumbnail.jpg',
+// 			name: 'Fall Limited Edition Sneakers',
+// 			price: 125,
+// 			qty: 3,
+// 			totalPrice: 400,
+// 		},
+// 		{
+// 			img: 'image-product-2-thumbnail.jpg',
+// 			name: 'Fall Limited',
+// 			price: 175,
+// 			qty: 5,
+// 			totalPrice: 375,
+// 		},
+// 		{
+// 			img: 'image-product-3-thumbnail.jpg',
+// 			name: 'Limited Edition Sneakers',
+// 			price: 150,
+// 			qty: 2,
+// 			totalPrice: 705,
+// 		},
+// 		{
+// 			img: 'image-product-4-thumbnail.jpg',
+// 			name: 'Fall Sneakers',
+// 			price: 225,
+// 			qty: 4,
+// 			totalPrice: 937,
+// 		},
+// 	],
+// };
 
 export default function MainNavbar({ className }) {
 	const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+	const cartDetails = useSelector((state) => state.cart);
 
 	const navbarOpenHandler = () => {
 		setIsNavbarOpen((bool) => !bool);

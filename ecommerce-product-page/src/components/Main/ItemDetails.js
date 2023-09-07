@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { itemDetails } from '../../data.js';
 
 import DesktopImageSlider from './DesktopImageSlider.js';
