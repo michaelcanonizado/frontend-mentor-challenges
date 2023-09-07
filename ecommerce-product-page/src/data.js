@@ -1,4 +1,5 @@
 export const itemDetails = {
+	id: '1',
 	name: 'Fall Limited Edition Sneakers',
 	price: {
 		salePrice: '125',

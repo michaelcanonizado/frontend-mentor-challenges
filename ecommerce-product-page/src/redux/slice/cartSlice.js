@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const cartSlice = createSlice({
 	name: 'cart',
@@ -6,6 +6,7 @@ const cartSlice = createSlice({
 		totalItems: 0,
 		items: [
 			{
+				id: '1',
 				img: 'image-product-1-thumbnail.jpg',
 				name: 'Fall Limited Edition Sneakers',
 				price: 125,
@@ -13,6 +14,7 @@ const cartSlice = createSlice({
 				totalPrice: 400,
 			},
 			{
+				id: '2',
 				img: 'image-product-2-thumbnail.jpg',
 				name: 'Fall Limited',
 				price: 175,
@@ -23,7 +25,24 @@ const cartSlice = createSlice({
 	},
 	reducers: {
 		addItem(state, action) {
-			console.log('Item Added');
+			const itemDetails = action.payload.item;
+			const itemQty = action.payload.qty;
+
+			// const filteredItem = state.items.filter((item) => {
+			// 	if (item.id === '1') {
+			// 		return item;
+			// 	}
+			// });
+
+			// if (filteredItem.length === 0) {
+			// 	state.items.push(itemDetails);
+			// } else {
+			// 	const item = state.items.find((item) => {
+			// 		if (item.id === '1') {
+			// 			return item;
+			// 		}
+			// 	});
+			// }
 		},
 	},
 });

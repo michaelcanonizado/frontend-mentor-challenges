@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
+import { cartActions } from '../../redux/slice/cartSlice.js';
 
 import { itemDetails } from '../../data.js';
 
@@ -8,20 +9,26 @@ import DesktopImageSlider from './DesktopImageSlider.js';
 import MobileImageSlider from './MobileImageSlider.js';
 
 export default function ItemDetails({ className }) {
-	const [itemQty, setItemQty] = useState(0);
+	const [itemQty, setItemQty] = useState(1);
+
+	const dispatch = useDispatch();
 
 	const incrementItemhandler = () => {
 		setItemQty((currQty) => {
 			return currQty + 1;
 		});
-		console.log(itemQty);
 	};
+
 	const decrementItemhandler = () => {
-		if (itemQty > 0) {
+		if (itemQty > 1) {
 			setItemQty((currQty) => {
 				return currQty - 1;
 			});
 		}
+	};
+
+	const addToCartHandler = () => {
+		dispatch(cartActions.addItem({ item: itemDetails, qty: itemQty }));
 	};
 
 	return (
@@ -87,7 +94,10 @@ export default function ItemDetails({ className }) {
 						</div>
 					</div>
 					<div className="w-full">
-						<button className="h-[50px] max-w-[250px] w-full bg-primary-200 text-neutral-100 flex justify-center items-center rounded-xl hover:cursor-pointer hover:translate-y-[-2px] transition-transform ease-out">
+						<button
+							className="h-[50px] max-w-[250px] w-full bg-primary-200 text-neutral-100 flex justify-center items-center rounded-xl hover:cursor-pointer hover:translate-y-[-2px] transition-transform ease-out"
+							onClick={addToCartHandler}
+						>
 							<svg
 								className="fill-neutral-100"
 								width="22"
