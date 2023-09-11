@@ -12,7 +12,7 @@ export default function ItemDetails({ className }) {
 	const [itemQty, setItemQty] = useState(1);
 
 	const dispatch = useDispatch();
-
+// console.log("Test")
 	const incrementItemhandler = () => {
 		setItemQty((currQty) => {
 			return currQty + 1;
