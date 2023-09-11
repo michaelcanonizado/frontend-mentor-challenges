@@ -1,51 +1,18 @@
 import React, { useState } from 'react';
 
-export default function DesktopImageSliderModal({ images }) {
-	const [currImage, setCurrImage] = useState({
-		index: 0,
-		jpg: images.jpgs[0],
-		thumbnail: images.thumbnails[0],
-		translateXValue: '0%',
-	});
-
-	console.log(images);
+export default function DesktopImageSliderModal({
+	currImage,
+	images,
+	prevImage,
+	nextImage,
+}) {
 	console.log(currImage);
 
 	const prevImageHandler = () => {
-		setCurrImage((currImage) => {
-			if (currImage.index === 0) {
-				return {
-					index: images.jpgs.length - 1,
-					jpg: images.jpgs[images.jpgs.length - 1],
-					thumbnail: images.thumbnails[images.jpgs.length - 1],
-					translateXValue: `-${(images.jpgs.length - 1) * 100}%`,
-				};
-			}
-			return {
-				index: currImage.index - 1,
-				jpg: images.jpgs[currImage.index - 1],
-				thumbnail: images.thumbnails[currImage.index - 1],
-				translateXValue: `-${(currImage.index - 1) * 100}%`,
-			};
-		});
+		prevImage();
 	};
 	const nextImageHandler = () => {
-		setCurrImage((currImage) => {
-			if (currImage.index === images.jpgs.length - 1) {
-				return {
-					index: 0,
-					jpg: images.jpgs[0],
-					thumbnail: images.thumbnails[0],
-					translateXValue: '0%',
-				};
-			}
-			return {
-				index: currImage.index + 1,
-				jpg: images.jpgs[currImage.index + 1],
-				thumbnail: images.thumbnails[currImage.index + 1],
-				translateXValue: `-${(currImage.index + 1) * 100}%`,
-			};
-		});
+		nextImage();
 	};
 
 	return (

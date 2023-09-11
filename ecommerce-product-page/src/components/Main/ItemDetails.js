@@ -10,10 +10,78 @@ import DesktopImageSliderModal from './DesktopImageSliderModal.js';
 import MobileImageSlider from './MobileImageSlider.js';
 
 export default function ItemDetails({ className }) {
+	const dispatch = useDispatch();
+
+	const images = itemDetails.images;
+
 	const [itemQty, setItemQty] = useState(1);
 
-	const dispatch = useDispatch();
-// console.log("Test")
+	const [currImage, setCurrImage] = useState({
+		index: 0,
+		jpg: images.jpgs[0],
+		thumbnail: images.thumbnails[0],
+		translateXValue: '0%',
+	});
+
+	//
+	//
+	// MAIN SLIDER HANDLERS
+
+	const imageSliderHandler = (event) => {
+		setCurrImage({
+			index: event.target.id,
+			jpg: event.target.src.replace('-thumbnail', ''),
+			thumbnail: event.target.src,
+			translateXValue:
+				event.target.id === 0 ? `-0%` : `-${event.target.id * 100}%`,
+		});
+	};
+
+	//
+	//
+	// MODAL SLIDER HANDLERS
+
+	const prevImageHandler = () => {
+		setCurrImage((currImage) => {
+			if (currImage.index === 0) {
+				return {
+					index: images.jpgs.length - 1,
+					jpg: images.jpgs[images.jpgs.length - 1],
+					thumbnail: images.thumbnails[images.jpgs.length - 1],
+					translateXValue: `-${(images.jpgs.length - 1) * 100}%`,
+				};
+			}
+			return {
+				index: currImage.index - 1,
+				jpg: images.jpgs[currImage.index - 1],
+				thumbnail: images.thumbnails[currImage.index - 1],
+				translateXValue: `-${(currImage.index - 1) * 100}%`,
+			};
+		});
+	};
+	const nextImageHandler = () => {
+		setCurrImage((currImage) => {
+			if (currImage.index === images.jpgs.length - 1) {
+				return {
+					index: 0,
+					jpg: images.jpgs[0],
+					thumbnail: images.thumbnails[0],
+					translateXValue: '0%',
+				};
+			}
+			return {
+				index: currImage.index + 1,
+				jpg: images.jpgs[currImage.index + 1],
+				thumbnail: images.thumbnails[currImage.index + 1],
+				translateXValue: `-${(currImage.index + 1) * 100}%`,
+			};
+		});
+	};
+
+	//
+	//
+	// CART HANDLERS
+
 	const incrementItemhandler = () => {
 		setItemQty((currQty) => {
 			return currQty + 1;
@@ -36,8 +104,18 @@ export default function ItemDetails({ className }) {
 		<div
 			className={`grid grid-cols-1 md:grid-cols-2 md:gap-10 lg:gap-20 md:mt-20 w-full ${className}`}
 		>
-			<DesktopImageSlider className="hidden md:flex" />
-			<DesktopImageSliderModal images={itemDetails.images} />
+			<DesktopImageSlider
+				className="hidden md:flex"
+				currImage={currImage}
+				images={images}
+				imageSlider={imageSliderHandler}
+			/>
+			<DesktopImageSliderModal
+				currImage={currImage}
+				images={images}
+				prevImage={prevImageHandler}
+				nextImage={nextImageHandler}
+			/>
 			<MobileImageSlider className="flex md:hidden" />
 
 			<div className="my-auto mt-10 mx-10 md:mx-0   w-fit sm:w-[70%] md:w-fit">

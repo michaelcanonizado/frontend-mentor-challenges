@@ -1,41 +1,38 @@
 import React, { useState } from 'react';
-import { itemDetails } from '../../data';
 
-export default function DesktopImageSlider({ className }) {
-	const [displayedImage, setDisplayedImage] = useState([
-		'http://localhost:3000/image-product-1.jpg',
-		'http://localhost:3000/image-product-1-thumbnail.jpg',
-	]);
-
+export default function DesktopImageSlider({
+	className,
+	currImage,
+	images,
+	imageSlider,
+}) {
 	const imageSliderHandler = (event) => {
-		setDisplayedImage([
-			event.target.src.replace('-thumbnail', ''),
-			event.target.src,
-		]);
+		imageSlider(event);
 	};
 
 	return (
 		<div className={`flex-col gap-5 overflow-hidden ${className}`}>
 			<div className="rounded-xl overflow-hidden">
-				<img src={displayedImage[0]} alt="" />
+				<img src={currImage.jpg} alt="" />
 			</div>
 			<div className="grid grid-cols-4 gap-5">
-				{itemDetails.images.thumbnails.map((thumbnail, index) => {
+				{images.thumbnails.map((thumbnail, index) => {
 					return (
 						<>
 							<div
 								className={`rounded-xl border-box overflow-hidden hover:cursor-pointer relative ${
-									displayedImage[1].includes(thumbnail)
+									currImage.thumbnail.includes(thumbnail)
 										? 'border-[3px] border-primary-200'
 										: ''
 								}`}
 								key={index}
 							>
-								{displayedImage[1].includes(thumbnail) ? (
+								{currImage.thumbnail.includes(thumbnail) ? (
 									<img
 										className="opacity-30"
 										src={thumbnail}
 										alt=""
+										id={index}
 									/>
 								) : (
 									<img
@@ -43,6 +40,7 @@ export default function DesktopImageSlider({ className }) {
 										src={thumbnail}
 										alt=""
 										onClick={imageSliderHandler}
+										id={index}
 									/>
 								)}
 							</div>
