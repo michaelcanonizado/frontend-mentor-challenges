@@ -6,6 +6,7 @@ import { cartActions } from '../../redux/slice/cartSlice.js';
 import { itemDetails } from '../../data.js';
 
 import DesktopImageSlider from './DesktopImageSlider.js';
+import DesktopImageSliderModal from './DesktopImageSliderModal.js';
 import MobileImageSlider from './MobileImageSlider.js';
 
 export default function ItemDetails({ className }) {
@@ -36,6 +37,7 @@ export default function ItemDetails({ className }) {
 			className={`grid grid-cols-1 md:grid-cols-2 md:gap-10 lg:gap-20 md:mt-20 w-full ${className}`}
 		>
 			<DesktopImageSlider className="hidden md:flex" />
+			<DesktopImageSliderModal images={itemDetails.images} />
 			<MobileImageSlider className="flex md:hidden" />
 
 			<div className="my-auto mt-10 mx-10 md:mx-0   w-fit sm:w-[70%] md:w-fit">

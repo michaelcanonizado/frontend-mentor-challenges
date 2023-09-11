@@ -20,7 +20,7 @@ export default function DesktopImageSlider({ className }) {
 				<img src={displayedImage[0]} alt="" />
 			</div>
 			<div className="grid grid-cols-4 gap-5">
-				{itemDetails.images.thumbnails.map((thumbnail) => {
+				{itemDetails.images.thumbnails.map((thumbnail, index) => {
 					return (
 						<>
 							<div
@@ -29,6 +29,7 @@ export default function DesktopImageSlider({ className }) {
 										? 'border-[3px] border-primary-200'
 										: ''
 								}`}
+								key={index}
 							>
 								{displayedImage[1].includes(thumbnail) ? (
 									<img

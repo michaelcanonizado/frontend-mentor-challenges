@@ -171,7 +171,7 @@ export default function MainNavbar({ className }) {
 						/>
 					</li>
 
-					{navLinks.map((link) => {
+					{navLinks.map((link, index) => {
 						return (
 							<li
 								className="
@@ -189,6 +189,7 @@ export default function MainNavbar({ className }) {
 								md:hover:border-b-primary-200
 							
 								md:transition-colors"
+								key={link}
 							>
 								<a href={link.url}>{link.name}</a>
 							</li>
