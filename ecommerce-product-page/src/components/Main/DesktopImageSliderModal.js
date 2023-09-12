@@ -5,6 +5,7 @@ export default function DesktopImageSliderModal({
 	images,
 	prevImage,
 	nextImage,
+	imageSlider,
 }) {
 	console.log(currImage);
 
@@ -13,6 +14,10 @@ export default function DesktopImageSliderModal({
 	};
 	const nextImageHandler = () => {
 		nextImage();
+	};
+
+	const imageSliderHandler = (event) => {
+		imageSlider(event);
 	};
 
 	return (
@@ -77,7 +82,39 @@ export default function DesktopImageSliderModal({
 						</div>
 					</div>
 				</div>
-				<div className=""></div>
+				<div className="grid grid-cols-4 gap-5 mt-5 mx-10">
+					{images.thumbnails.map((thumbnail, index) => {
+						return (
+							<>
+								<div
+									className={`bg-white rounded-xl border-box overflow-hidden hover:cursor-pointer relative ${
+										currImage.thumbnail.includes(thumbnail)
+											? 'border-[3px] border-primary-200'
+											: ''
+									}`}
+									key={index}
+								>
+									{currImage.thumbnail.includes(thumbnail) ? (
+										<img
+											className="opacity-30"
+											src={thumbnail}
+											alt=""
+											id={index}
+										/>
+									) : (
+										<img
+											className="hover:opacity-70 transition-opacity ease-linear"
+											src={thumbnail}
+											alt=""
+											onClick={imageSliderHandler}
+											id={index}
+										/>
+									)}
+								</div>
+							</>
+						);
+					})}
+				</div>
 			</div>
 		</>
 	);

@@ -32,8 +32,7 @@ export default function ItemDetails({ className }) {
 			index: event.target.id,
 			jpg: event.target.src.replace('-thumbnail', ''),
 			thumbnail: event.target.src,
-			translateXValue:
-				event.target.id === 0 ? `-0%` : `-${event.target.id * 100}%`,
+			translateXValue: `-${event.target.id * 100}%`,
 		});
 	};
 
@@ -115,6 +114,7 @@ export default function ItemDetails({ className }) {
 				images={images}
 				prevImage={prevImageHandler}
 				nextImage={nextImageHandler}
+				imageSlider={imageSliderHandler}
 			/>
 			<MobileImageSlider className="flex md:hidden" />
 
