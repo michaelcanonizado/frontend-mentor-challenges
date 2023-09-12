@@ -15,13 +15,13 @@ export default function ItemDetails({ className }) {
 	const images = itemDetails.images;
 
 	const [itemQty, setItemQty] = useState(1);
-
 	const [currImage, setCurrImage] = useState({
 		index: 0,
 		jpg: images.jpgs[0],
 		thumbnail: images.thumbnails[0],
 		translateXValue: '0%',
 	});
+	const [isModalSliderOpen, setIsModalSliderOpen] = useState(false);
 
 	//
 	//
@@ -77,6 +77,10 @@ export default function ItemDetails({ className }) {
 		});
 	};
 
+	const toggleModalSliderHandler = () => {
+		setIsModalSliderOpen((bool) => !bool);
+	};
+
 	//
 	//
 	// CART HANDLERS
@@ -108,14 +112,19 @@ export default function ItemDetails({ className }) {
 				currImage={currImage}
 				images={images}
 				imageSlider={imageSliderHandler}
+				toggleModalSlider={toggleModalSliderHandler}
 			/>
-			<DesktopImageSliderModal
-				currImage={currImage}
-				images={images}
-				prevImage={prevImageHandler}
-				nextImage={nextImageHandler}
-				imageSlider={imageSliderHandler}
-			/>
+			{isModalSliderOpen && (
+				<DesktopImageSliderModal
+					currImage={currImage}
+					images={images}
+					prevImage={prevImageHandler}
+					nextImage={nextImageHandler}
+					imageSlider={imageSliderHandler}
+					toggleModalSlider={toggleModalSliderHandler}
+				/>
+			)}
+
 			<MobileImageSlider className="flex md:hidden" />
 
 			<div className="my-auto mt-10 mx-10 md:mx-0   w-fit sm:w-[70%] md:w-fit">

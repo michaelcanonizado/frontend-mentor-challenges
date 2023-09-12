@@ -5,14 +5,21 @@ export default function DesktopImageSlider({
 	currImage,
 	images,
 	imageSlider,
+	toggleModalSlider,
 }) {
 	const imageSliderHandler = (event) => {
 		imageSlider(event);
 	};
+	const toggleModalSliderHandler = () => {
+		toggleModalSlider();
+	};
 
 	return (
 		<div className={`flex-col gap-5 overflow-hidden ${className}`}>
-			<div className="rounded-xl overflow-hidden">
+			<div
+				className="rounded-xl overflow-hidden hover:cursor-pointer"
+				onClick={toggleModalSliderHandler}
+			>
 				<img src={currImage.jpg} alt="" />
 			</div>
 			<div className="grid grid-cols-4 gap-5">

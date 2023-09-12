@@ -6,9 +6,8 @@ export default function DesktopImageSliderModal({
 	prevImage,
 	nextImage,
 	imageSlider,
+	toggleModalSlider,
 }) {
-	console.log(currImage);
-
 	const prevImageHandler = () => {
 		prevImage();
 	};
@@ -20,12 +19,33 @@ export default function DesktopImageSliderModal({
 		imageSlider(event);
 	};
 
+	const toggleModalSliderHandler = () => {
+		toggleModalSlider();
+	};
+
 	return (
 		<>
 			<div className="bg-black absolute inset-0 opacity-60"></div>
 			<div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
-				<div className=""></div>
-				<div className="w-[500px] rounded-xl">
+				<div className="flex justify-end">
+					<div
+						className="w-[30px] h-[30px] bg-transparent hover:cursor-pointer"
+						onClick={toggleModalSliderHandler}
+					>
+						<svg
+							width="15"
+							height="15"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+								fill="#fff"
+								fill-rule="evenodd"
+							/>
+						</svg>
+					</div>
+				</div>
+				<div className="w-[500px] rounded-xl relative">
 					<div className="overflow-hidden rounded-xl">
 						<div
 							className={`flex transition-transform duration-[500ms] ease-in-out translate-x-[${currImage.translateXValue}]`}
@@ -35,7 +55,7 @@ export default function DesktopImageSliderModal({
 							})}
 						</div>
 					</div>
-					<div className="absolute inset-0 ">
+					<div className="absolute inset-0">
 						<div
 							className="bg-white aspect-square h-[40px] w-[40px] rounded-full
 
