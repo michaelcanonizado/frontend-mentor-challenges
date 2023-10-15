@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+html {
+	font-family: 'League Spartan', sans-serif;
+}
+
+/* @layer base {
     :root {
         --
     }
-}
+} */
