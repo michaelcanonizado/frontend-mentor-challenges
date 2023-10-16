@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+//a
 export default function DesktopImageSlider({
 	className,
 	currImage,
